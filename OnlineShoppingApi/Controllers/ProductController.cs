@@ -22,7 +22,6 @@ namespace OnlineShoppingApi.Controllers
         public IActionResult GetAllProducts(string? orderBy)
         {
 
-            int a = 1, b = 0, c = a / b;
             _logger.LogInformation("Fetching All product...");
             var productList = _productService.GetAllProducts(orderBy);
             _logger.LogInformation("All product fetched successfully!");
