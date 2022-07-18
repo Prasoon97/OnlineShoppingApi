@@ -2,16 +2,16 @@ node {
    def commit_id
    stage('Preparation') {
      checkout scm
-     sh "git rev-parse --short HEAD > .git/commit-id"                        
+     bat "git rev-parse --short HEAD > .git/commit-id"                        
      commit_id = readFile('.git/commit-id').trim()
    }
    
    stage('Build') {
-       sh 'dotnet build'  
+       bat 'dotnet build'  
    }
 
    stage('Test') {
-       sh 'dotnet test'
+       bat 'dotnet test'
    }
 
    stage('docker build/push') {
