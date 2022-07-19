@@ -8,7 +8,7 @@ node {
     def to = emailextrecipients([
           [$class: 'CulpritsRecipientProvider'],
           [$class: 'DevelopersRecipientProvider'],
-          [$class: 'RequesterRecipientProvider']
+          [$class: 'RequesterRecipientProvider'])
   
        
 try
