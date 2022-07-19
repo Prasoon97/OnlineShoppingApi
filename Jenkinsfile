@@ -4,7 +4,8 @@ node {
     def to = emailextrecipients([
           [$class: 'CulpritsRecipientProvider'],
           [$class: 'DevelopersRecipientProvider'],
-          [$class: 'RequesterRecipientProvider'])
+          [$class: 'RequesterRecipientProvider']
+       ])
   
        
 try
@@ -28,6 +29,7 @@ try
        def app = docker.build("prasoonchaubey/docker-onlineshoppingapi:${commit_id}", '.').push()
      }
    }
+}
    catch(e) {
     // mark build as failed
     currentBuild.result = "FAILURE";
@@ -45,5 +47,5 @@ try
     // mark current build as a failure and throw the error
     throw e;
   }
-   }
+   
 }
