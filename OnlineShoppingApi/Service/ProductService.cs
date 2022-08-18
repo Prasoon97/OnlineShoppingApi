@@ -1,5 +1,6 @@
 using OnlineShoppingApi.Data;
 using OnlineShoppingApi.Models;
+using static OnlineShoppingApi.Common.Constants;
 
 namespace OnlineShoppingApi.Service
 {
@@ -51,6 +52,22 @@ namespace OnlineShoppingApi.Service
             _context.AddRange(productList);
             var result = _context.SaveChanges();
             return result > 0;
+        }
+
+        public bool DeleteProduct(int id)
+        {
+            var productToBeDeleted = _context.Products.FirstOrDefault(p => p.Id == id);
+            if (productToBeDeleted != null)
+            {
+                _context.Products.Remove(productToBeDeleted);
+                _context.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
     }
 }

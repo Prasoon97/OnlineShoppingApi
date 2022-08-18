@@ -6,6 +6,7 @@ using OnlineShoppingApi.Service;
 namespace OnlineShoppingApi.Controllers
 {
 
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProductController : ControllerBase
@@ -18,8 +19,8 @@ namespace OnlineShoppingApi.Controllers
             _productService = productService;
         }
 
-        [HttpGet]
-        public IActionResult GetAllProducts(string? orderBy)
+        [HttpGet(Name = "GetAllProducts")]
+        public IActionResult Get(string? orderBy)
         {
 
             _logger.LogInformation("Fetching All product...");
@@ -28,8 +29,8 @@ namespace OnlineShoppingApi.Controllers
             return Ok(productList);
         }
 
-        [HttpGet("[action]/{id:int}")]
-        public IActionResult GetById(int id)
+        [HttpGet("{id:int}")]
+        public IActionResult Get(int id)
         {
             _logger.LogInformation($"Fetching Products for Id: {id}");
             var product = _productService.GetProductById(id);
@@ -44,8 +45,8 @@ namespace OnlineShoppingApi.Controllers
 
         }
 
-        [HttpGet("[action]/{category:alpha}")]
-        public IActionResult SearchByCategory(string category)
+        [HttpGet("{category:alpha}")]
+        public IActionResult Search(string category)
         {
             _logger.LogInformation($"Fetching Products for category {category}");
             var productList = _productService.GetProductsByCategory(category);
@@ -88,6 +89,21 @@ namespace OnlineShoppingApi.Controllers
             }
             _logger.LogInformation("Products added sucessfully!");
             return StatusCode(StatusCodes.Status201Created, "Products are Added succesfully!!");
+
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            _logger.LogInformation("Deleting product");
+            var isDeleted = _productService.DeleteProduct(id);
+            if (!isDeleted)
+            {
+                _logger.LogInformation("Products cannot be deleted.");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Failed: Product not deleted");
+            }
+            _logger.LogInformation("Product deleted sucessfully!");
+            return StatusCode(StatusCodes.Status200OK, "Product deleted succesfully!!");
 
         }
 

@@ -1,7 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
-using Swashbuckle.AspNetCore.Annotations;
 
 namespace OnlineShoppingApi.Models
 {
@@ -15,6 +14,7 @@ namespace OnlineShoppingApi.Models
         [ForeignKey("ProductDetail")]
         public int ProductId { get; set; }
         [Required]
+        [Range(1, int.MaxValue, ErrorMessage = "Quantity should be {1} or greater")]
         public int Quantity { get; set; }
         [ForeignKey("OrderDetail")]
         public int? OrderId { get; set; }
@@ -22,7 +22,7 @@ namespace OnlineShoppingApi.Models
         public Order? OrderDetail { get; set; }
         // [JsonIgnore]
         // public User? UserDetail { get; set; }
-       
+        [JsonIgnore]
         public Product? ProductDetail { get; set; }
     }
 }

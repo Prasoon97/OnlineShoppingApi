@@ -11,6 +11,7 @@ namespace OnlineShoppingApi.Service
         //To do Add product
         bool AddProduct(Product product);
         bool AddProductsInBulk(IEnumerable<Product> productList);
+        bool DeleteProduct(int id);
     }
 
 }

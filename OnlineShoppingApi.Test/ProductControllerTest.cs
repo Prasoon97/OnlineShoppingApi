@@ -40,7 +40,7 @@ namespace OnlineShoppingApi.Test
             _productService.Setup(x => x.GetAllProducts(orderBy)).Returns(expectdResult);
 
             //Act
-            var actionResult = _controller.GetAllProducts(orderBy);
+            var actionResult = _controller.Get(orderBy);
             var result = actionResult as OkObjectResult;
 
             //Assert
@@ -68,7 +68,7 @@ namespace OnlineShoppingApi.Test
             _productService.Setup(x => x.GetProductById(id)).Returns(expectdResult);
 
             //Act
-            var actionResult = _controller.GetById(id);
+            var actionResult = _controller.Get(id);
             var result = actionResult as OkObjectResult;
             //Assert 
             Assert.IsType<OkObjectResult>(result);
@@ -86,7 +86,7 @@ namespace OnlineShoppingApi.Test
             _productService.Setup(x => x.GetProductById(id)).Returns(nullProduct);
 
             //Act
-            var actionResult = _controller.GetById(id);
+            var actionResult = _controller.Get(id);
             var result = actionResult as NotFoundObjectResult;
 
             //Assert 
@@ -109,7 +109,7 @@ namespace OnlineShoppingApi.Test
             _productService.Setup(x => x.GetProductsByCategory(category)).Returns(expectdResult);
 
             //Act
-            var actionResult = _controller.SearchByCategory(category);
+            var actionResult = _controller.Search(category);
             var result = actionResult as OkObjectResult;
             Assert.IsType<OkObjectResult>(result);
             Assert.Equal(expectdResult, result.Value);
@@ -128,7 +128,7 @@ namespace OnlineShoppingApi.Test
             _productService.Setup(x => x.GetProductsByCategory(category)).Returns(blankList);
 
             //Act
-            var actionResult = _controller.SearchByCategory(category);
+            var actionResult = _controller.Search(category);
             var result = actionResult as NotFoundObjectResult;
             Assert.IsType<NotFoundObjectResult>(result);
             Assert.Equal(expectedMessage, result.Value);
@@ -233,6 +233,21 @@ namespace OnlineShoppingApi.Test
             Assert.Equal(StatusCodes.Status500InternalServerError, result.StatusCode);
             Assert.Equal("Products were not added", result.Value);
 
+        }
+
+        [Fact]
+        public void Delete_IfValidId_ReturnsOk()
+        {
+            //Arrange
+            _productService.Setup(x => x.DeleteProduct(It.IsAny<int>())).Returns(true);
+
+            //Act
+            var actionResult = _controller.Delete(It.IsAny<int>());
+            var result = actionResult as ObjectResult;
+
+            //Assert
+            Assert.IsType<ObjectResult>(result);
+            Assert.Equal(StatusCodes.Status200OK, result.StatusCode);
         }
     }
 
