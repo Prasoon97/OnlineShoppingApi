@@ -6,7 +6,7 @@ using OnlineShoppingApi.Service;
 
 namespace OnlineShoppingApi.Controllers
 {
-    [Authorize]
+    [Authorize()]
     [Route("api/[controller]")]
     [ApiController]
     public class CartController : ControllerBase
@@ -19,9 +19,9 @@ namespace OnlineShoppingApi.Controllers
             _logger = logger;
             _cartService = cartService;
         }
-        #region  Cart
+    
         [HttpGet]
-        public IActionResult MyCart()
+        public IActionResult Cart()
         {
             _logger.LogInformation("Fetching Cart Details....");
             string userId = User?.Claims?.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
@@ -40,76 +40,35 @@ namespace OnlineShoppingApi.Controllers
         [HttpPost]
         public IActionResult AddToCart(Cart cart)
         {
-
             string userId = User?.Claims?.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
             cart.UserId = userId;
             _logger.LogInformation("Adding product to cart");
-            bool result = _cartService.AddToCart(cart);
+            var result = _cartService.AddToCart(cart);
 
-            if (!result)
+            if (!result.Item1)
             {
                 _logger.LogInformation("Adding Product to cart failed");
-                return StatusCode(StatusCodes.Status500InternalServerError, "Can't add this item to cart");
+                return StatusCode(StatusCodes.Status500InternalServerError, result.Item2);
             }
             _logger.LogInformation("Product added to cart Successfully!");
-            return CreatedAtAction(nameof(MyCart), "Product added to cart sucessfully!!");
-        }
-        #endregion
-
-        #region Order
-
-        [HttpGet("[action]")]
-        public IActionResult MyOrders()
-        {
-            string userId = User?.Claims?.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            _logger.LogInformation("Fetching Order Details..");
-            var orderList = _cartService.GetOrderByUserId(userId);
-            _logger.LogInformation("Fetched Order Details successfully!");
-
-            if (orderList == null || orderList.Count() == 0)
-            {
-                _logger.LogInformation("No order placed so far");
-
-                return NotFound("No orders placed yet!!");
-            }
-
-            _logger.LogInformation($"{orderList.Count()} Order found");
-            return Ok(orderList);
+            return CreatedAtAction(nameof(Cart), "Product added to cart sucessfully!!");
         }
 
-        [HttpPost("[action]")]
-        public IActionResult PlaceOrder(Order order)
+        [HttpDelete]
+        public IActionResult Delete(int productId)
         {
             string userId = User?.Claims?.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            order.UserId = userId;
+            _logger.LogInformation("Removing product from cart");
+            bool result = _cartService.RemoveFromCart(productId,userId);
 
-            _logger.LogInformation("Placing order...");
-            var result = _cartService.OrderProducts(order);
             if (!result)
             {
-                _logger.LogInformation("Failed to place order");
-                return StatusCode(StatusCodes.Status500InternalServerError, "Can't Place order, Your cart is empty. Please add items to cart first then Place your order.");
+                _logger.LogInformation("Removing Product from cart failed");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Failed:Product not found in the cart");
             }
-            _logger.LogInformation("Order placed sucessfully!");
-            return CreatedAtAction(nameof(MyOrders), "Order Placed succesfully!!");
-
+            _logger.LogInformation("Product removed from cart Successfully!");
+            return CreatedAtAction(nameof(Cart), "Product removed from cart sucessfully!!");
         }
-
-        [HttpGet("[action]")]
-        public IActionResult GetAllOrders()
-        {
-            _logger.LogInformation("Fetching all placed orders...");
-            var orderList = _cartService.GetAllOrders();
-            _logger.LogInformation("Order details fetched sucessfully");
-            if (orderList == null || orderList.Count() == 0)
-            {
-                _logger.LogInformation("No order found");
-                return NotFound("No Order Placed by any User");
-            }
-            _logger.LogInformation($"{orderList.Count()} orders found");
-            return Ok(orderList);
-        }
-        #endregion
 
     }
 }

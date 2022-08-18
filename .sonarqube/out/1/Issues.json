@@ -1,0 +1,502 @@
+{
+  "$schema": "http://json.schemastore.org/sarif-1.0.0",
+  "version": "1.0.0",
+  "runs": [
+    {
+      "tool": {
+        "name": "Microsoft (R) Visual C# Compiler",
+        "version": "4.2.0.0",
+        "fileVersion": "4.2.0-4.22220.2 (1e40aa11)",
+        "semanticVersion": "4.2.0",
+        "language": "en-US"
+      },
+      "results": [
+        {
+          "ruleId": "CS8602",
+          "level": "warning",
+          "message": "Dereference of a possibly null reference.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/prachaub2/Project/OnlineShoppingApi/OnlineShoppingApi.Test/CartControllerTest.cs",
+                "region": {
+                  "startLine": 45,
+                  "startColumn": 47,
+                  "endLine": 45,
+                  "endColumn": 53
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8600",
+          "level": "warning",
+          "message": "Converting null literal or possible null value to non-nullable type.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/prachaub2/Project/OnlineShoppingApi/OnlineShoppingApi.Test/ProductControllerTest.cs",
+                "region": {
+                  "startLine": 29,
+                  "startColumn": 30,
+                  "endLine": 29,
+                  "endColumn": 34
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8604",
+          "level": "warning",
+          "message": "Possible null reference argument for parameter 'orderBy' in 'IQueryable<Product> IProductService.GetAllProducts(string orderBy)'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/prachaub2/Project/OnlineShoppingApi/OnlineShoppingApi.Test/ProductControllerTest.cs",
+                "region": {
+                  "startLine": 40,
+                  "startColumn": 57,
+                  "endLine": 40,
+                  "endColumn": 64
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8602",
+          "level": "warning",
+          "message": "Dereference of a possibly null reference.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/prachaub2/Project/OnlineShoppingApi/OnlineShoppingApi.Test/ProductControllerTest.cs",
+                "region": {
+                  "startLine": 49,
+                  "startColumn": 41,
+                  "endLine": 49,
+                  "endColumn": 47
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8602",
+          "level": "warning",
+          "message": "Dereference of a possibly null reference.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/prachaub2/Project/OnlineShoppingApi/OnlineShoppingApi.Test/CartControllerTest.cs",
+                "region": {
+                  "startLine": 62,
+                  "startColumn": 43,
+                  "endLine": 62,
+                  "endColumn": 49
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8602",
+          "level": "warning",
+          "message": "Dereference of a possibly null reference.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/prachaub2/Project/OnlineShoppingApi/OnlineShoppingApi.Test/ProductControllerTest.cs",
+                "region": {
+                  "startLine": 75,
+                  "startColumn": 41,
+                  "endLine": 75,
+                  "endColumn": 47
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8600",
+          "level": "warning",
+          "message": "Converting null literal or possible null value to non-nullable type.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/prachaub2/Project/OnlineShoppingApi/OnlineShoppingApi.Test/ProductControllerTest.cs",
+                "region": {
+                  "startLine": 84,
+                  "startColumn": 35,
+                  "endLine": 84,
+                  "endColumn": 39
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8604",
+          "level": "warning",
+          "message": "Possible null reference argument for parameter 'value' in 'IReturnsResult<IProductService> IReturns<IProductService, Product>.Returns(Product value)'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/prachaub2/Project/OnlineShoppingApi/OnlineShoppingApi.Test/ProductControllerTest.cs",
+                "region": {
+                  "startLine": 86,
+                  "startColumn": 70,
+                  "endLine": 86,
+                  "endColumn": 81
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8602",
+          "level": "warning",
+          "message": "Dereference of a possibly null reference.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/prachaub2/Project/OnlineShoppingApi/OnlineShoppingApi.Test/ProductControllerTest.cs",
+                "region": {
+                  "startLine": 94,
+                  "startColumn": 43,
+                  "endLine": 94,
+                  "endColumn": 49
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8602",
+          "level": "warning",
+          "message": "Dereference of a possibly null reference.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/prachaub2/Project/OnlineShoppingApi/OnlineShoppingApi.Test/CartControllerTest.cs",
+                "region": {
+                  "startLine": 85,
+                  "startColumn": 56,
+                  "endLine": 85,
+                  "endColumn": 62
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8602",
+          "level": "warning",
+          "message": "Dereference of a possibly null reference.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/prachaub2/Project/OnlineShoppingApi/OnlineShoppingApi.Test/ProductControllerTest.cs",
+                "region": {
+                  "startLine": 115,
+                  "startColumn": 41,
+                  "endLine": 115,
+                  "endColumn": 47
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8602",
+          "level": "warning",
+          "message": "Dereference of a possibly null reference.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/prachaub2/Project/OnlineShoppingApi/OnlineShoppingApi.Test/CartControllerTest.cs",
+                "region": {
+                  "startLine": 108,
+                  "startColumn": 68,
+                  "endLine": 108,
+                  "endColumn": 74
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8602",
+          "level": "warning",
+          "message": "Dereference of a possibly null reference.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/prachaub2/Project/OnlineShoppingApi/OnlineShoppingApi.Test/ProductControllerTest.cs",
+                "region": {
+                  "startLine": 134,
+                  "startColumn": 43,
+                  "endLine": 134,
+                  "endColumn": 49
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8602",
+          "level": "warning",
+          "message": "Dereference of a possibly null reference.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/prachaub2/Project/OnlineShoppingApi/OnlineShoppingApi.Test/ProductControllerTest.cs",
+                "region": {
+                  "startLine": 158,
+                  "startColumn": 56,
+                  "endLine": 158,
+                  "endColumn": 62
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8602",
+          "level": "warning",
+          "message": "Dereference of a possibly null reference.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/prachaub2/Project/OnlineShoppingApi/OnlineShoppingApi.Test/CartControllerTest.cs",
+                "region": {
+                  "startLine": 144,
+                  "startColumn": 42,
+                  "endLine": 144,
+                  "endColumn": 48
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8602",
+          "level": "warning",
+          "message": "Dereference of a possibly null reference.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/prachaub2/Project/OnlineShoppingApi/OnlineShoppingApi.Test/ProductControllerTest.cs",
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 68,
+                  "endLine": 182,
+                  "endColumn": 74
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8602",
+          "level": "warning",
+          "message": "Dereference of a possibly null reference.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/prachaub2/Project/OnlineShoppingApi/OnlineShoppingApi.Test/CartControllerTest.cs",
+                "region": {
+                  "startLine": 161,
+                  "startColumn": 43,
+                  "endLine": 161,
+                  "endColumn": 49
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8602",
+          "level": "warning",
+          "message": "Dereference of a possibly null reference.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/prachaub2/Project/OnlineShoppingApi/OnlineShoppingApi.Test/CartControllerTest.cs",
+                "region": {
+                  "startLine": 186,
+                  "startColumn": 56,
+                  "endLine": 186,
+                  "endColumn": 62
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8602",
+          "level": "warning",
+          "message": "Dereference of a possibly null reference.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/prachaub2/Project/OnlineShoppingApi/OnlineShoppingApi.Test/ProductControllerTest.cs",
+                "region": {
+                  "startLine": 209,
+                  "startColumn": 56,
+                  "endLine": 209,
+                  "endColumn": 62
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8602",
+          "level": "warning",
+          "message": "Dereference of a possibly null reference.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/prachaub2/Project/OnlineShoppingApi/OnlineShoppingApi.Test/CartControllerTest.cs",
+                "region": {
+                  "startLine": 211,
+                  "startColumn": 68,
+                  "endLine": 211,
+                  "endColumn": 74
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8602",
+          "level": "warning",
+          "message": "Dereference of a possibly null reference.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/prachaub2/Project/OnlineShoppingApi/OnlineShoppingApi.Test/ProductControllerTest.cs",
+                "region": {
+                  "startLine": 233,
+                  "startColumn": 68,
+                  "endLine": 233,
+                  "endColumn": 74
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        }
+      ],
+      "rules": {
+        "CS8600": {
+          "id": "CS8600",
+          "shortDescription": "Converting null literal or possible null value to non-nullable type.",
+          "defaultLevel": "warning",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS8600)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry"
+            ]
+          }
+        },
+        "CS8602": {
+          "id": "CS8602",
+          "shortDescription": "Dereference of a possibly null reference.",
+          "defaultLevel": "warning",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS8602)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry"
+            ]
+          }
+        },
+        "CS8604": {
+          "id": "CS8604",
+          "shortDescription": "Possible null reference argument.",
+          "defaultLevel": "warning",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS8604)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

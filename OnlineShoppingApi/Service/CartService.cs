@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using OnlineShoppingApi.Data;
 using OnlineShoppingApi.Models;
+using static OnlineShoppingApi.Common.Constants;
 
 namespace OnlineShoppingApi.Service
 {
@@ -12,11 +13,27 @@ namespace OnlineShoppingApi.Service
             _context = context;
         }
 
-        public bool AddToCart(Cart cart)
+        public (bool, string) AddToCart(Cart cart)
         {
-            _context.Carts.Add(cart);
-            var result = _context.SaveChanges();
-            return result > 0;
+            var result = ValidateCart(cart);
+            if (!result.Item1)
+            {
+                return result;
+            }
+            else
+            {
+                var productInCart = _context.Carts.FirstOrDefault(c => c.UserId == cart.UserId && c.ProductId == cart.ProductId & c.OrderId == null);
+                if (productInCart != null)
+                {
+                    productInCart.Quantity += cart.Quantity;
+                }
+                else
+                {
+                    _context.Carts.Add(cart);
+                }
+                _context.SaveChanges();
+                return (true, "Success");
+            }
         }
 
         public IQueryable<Cart> GetCartDetails(string userId)
@@ -26,42 +43,49 @@ namespace OnlineShoppingApi.Service
             return productsInCart;
         }
 
-        public bool OrderProducts(Order orderDetails)
+        public bool RemoveFromCart(int productId, string userId)
         {
-            var productsInCart = _context.Carts.Where(x => x.UserId == orderDetails.UserId && x.OrderId == null).Include(x => x.ProductDetail).ToList();
-            if (productsInCart == null || productsInCart.Count() == 0)
+            var productsInCart = _context.Carts.FirstOrDefault(c => c.UserId == userId && c.OrderId == null && c.ProductId == productId);
+            if (productsInCart != null)
             {
-                return false;
+                _context.Carts.Remove(productsInCart);
+                _context.SaveChanges();
+                return true;
             }
-            var orderTotal = productsInCart.Sum(x => x.ProductDetail.Price * x.Quantity);
-            orderDetails.PaymentInfo.TotalAmount = orderTotal;
-            orderDetails.OrderStatus = OrderStatus.Success;
-            orderDetails.Addresses.First().AddressType = AddressType.ShippingAddress;
-            orderDetails.Addresses.Last().AddressType = AddressType.BillingAddress;
+            return false;
+        }
 
-            _context.Orders.Add(orderDetails);
-
-            _context.SaveChanges();
-            foreach (var product in productsInCart)
+        private (bool, string) ValidateCart(Cart cart)
+        {
+            bool isValid;
+            string message;
+            var productInCart = _context.Carts.FirstOrDefault(c => c.UserId == cart.UserId && c.ProductId == cart.ProductId & c.OrderId == null);
+            int totalCartQuantity = cart.Quantity + (productInCart == null ? 0 : productInCart.Quantity);
+            var product = _context.Products.FirstOrDefault(p => p.Id == cart.ProductId);
+            if (product == null)
             {
-                product.OrderId = orderDetails.OrderId;
+                isValid = false;
+                message = "Product does not exist";
             }
-            _context.SaveChanges();
+            else if (product.MinOrder != null && totalCartQuantity < product.MinOrder)
+            {
+                isValid = false;
+                message = $"Please provide a correct Quantity, Minimum order quantity for this product is {product.MinOrder}";
+            }
+            else if (product.MaxOrder != null && totalCartQuantity > product.MaxOrder)
+            {
+                isValid = false;
+                message = $"Please provide a correct Quantity, Maximum order quantity for this product is {product.MaxOrder}";
+            }
+            else
+            {
+                isValid = true;
+                message = "Success";
+            }
 
-            return true;
+            return (isValid, message);
         }
 
-        public IQueryable<Order> GetAllOrders()
-        {
-            IQueryable<Order> orderList = _context.Orders.Include(x => x.Addresses).Include(x => x.PaymentInfo).Include(x => x.Products).ThenInclude(x => x.ProductDetail);
-            return orderList;
-        }
-
-        public IQueryable<Order> GetOrderByUserId(string userId)
-        {
-            IQueryable<Order> orderList = _context.Orders.Where(x => x.UserId == userId).Include(x => x.Addresses).Include(x => x.PaymentInfo).Include(x => x.Products).ThenInclude(x => x.ProductDetail);
-            return orderList;
-        }
     }
 
 }
