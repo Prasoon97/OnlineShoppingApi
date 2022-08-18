@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using OnlineShoppingApi.Common;
 
 namespace OnlineShoppingApi.Models
 {
@@ -16,7 +17,14 @@ namespace OnlineShoppingApi.Models
         public string Category { get; set; }
         [Required]
         public DateTime DateAdded { get; set; }
-        
+
+        [Range(1, int.MaxValue, ErrorMessage = "Minimum order value should be {1} or greater")]
+        [IsLessThanOrEqualsValidation("MaxOrder")]
+        public int? MinOrder { get; set; }
+        [IsGreaterThanOrEqualsValidation("MinOrder")]
+        [Range(1, int.MaxValue, ErrorMessage = "Maximum order value should be {1} or greater")]
+        public int? MaxOrder { get; set; }
+
     }
 
 

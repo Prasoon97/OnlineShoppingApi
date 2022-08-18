@@ -1,0 +1,6 @@
+projectKey=shoppingapi-local
+serverUrl=http://localhost:9000
+serverVersion=9.5.0.56709
+dashboardUrl=http://localhost:9000/dashboard?id=shoppingapi-local
+ceTaskId=AYIbtZKfRbXz1Cwqqd1s
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYIbtZKfRbXz1Cwqqd1s

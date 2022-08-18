@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using OnlineShoppingApi.Common;
 using OnlineShoppingApi.Data;
 using OnlineShoppingApi.Service;
 using Serilog;
@@ -8,7 +9,7 @@ using Serilog;
 var builder = WebApplication.CreateBuilder(args);
 
 // builder.Logging.ClearProviders();
-// builder.Logging.AddConsole();
+ //builder.Logging.AddConsole();
 // builder.Logging.AddDebug();
 
 var loggerConfiguration = new LoggerConfiguration().WriteTo.File(builder.Configuration["Serilog:LogPath"], rollOnFileSizeLimit:true,fileSizeLimitBytes:1000).
@@ -24,7 +25,7 @@ builder.Logging.AddSerilog(loggerConfiguration);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddXmlSerializerFormatters();
 
 builder.Services.AddAuthentication(options =>
 {
@@ -41,6 +42,7 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("OnlineShoppingDa
 
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICartService, CartService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

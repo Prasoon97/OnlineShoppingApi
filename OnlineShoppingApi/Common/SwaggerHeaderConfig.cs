@@ -6,27 +6,30 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-public class AddHeaderParameter : IOperationFilter
+namespace OnlineShoppingApi.Common
 {
-    public void Apply(OpenApiOperation operation, OperationFilterContext context)
+    public class AddHeaderParameter : IOperationFilter
     {
-        //Getting the methods having Authorize Attribute
-        //It will be used to add security to only authorized method and show lock symbol only on them
-        var authAttributes = context.MethodInfo.DeclaringType.GetCustomAttributes(true)
-        .Union(context.MethodInfo.GetCustomAttributes(true))
-        .OfType<AuthorizeAttribute>();
-
-        if (authAttributes.Any())
+        public void Apply(OpenApiOperation operation, OperationFilterContext context)
         {
-            if (operation.Security == null)
-                operation.Security = new List<OpenApiSecurityRequirement>();
+            //Getting the methods having Authorize Attribute
+            //It will be used to add security to only authorized method and show lock symbol only on them
+            var authAttributes = context.MethodInfo.DeclaringType.GetCustomAttributes(true)
+            .Union(context.MethodInfo.GetCustomAttributes(true))
+            .OfType<AuthorizeAttribute>();
 
-
-            var scheme = new OpenApiSecurityScheme { Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "bearer" } };
-            operation.Security.Add(new OpenApiSecurityRequirement
+            if (authAttributes.Any())
             {
-                [scheme] = new List<string>()
-            });
+                if (operation.Security == null)
+                    operation.Security = new List<OpenApiSecurityRequirement>();
+
+
+                var scheme = new OpenApiSecurityScheme { Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "bearer" } };
+                operation.Security.Add(new OpenApiSecurityRequirement
+                {
+                    [scheme] = new List<string>()
+                });
+            }
         }
     }
 }

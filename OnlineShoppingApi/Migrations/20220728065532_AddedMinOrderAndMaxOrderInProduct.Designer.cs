@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineShoppingApi.Data;
 
@@ -11,9 +12,10 @@ using OnlineShoppingApi.Data;
 namespace OnlineShoppingApi.Migrations
 {
     [DbContext(typeof(OnlineShoppingContext))]
-    partial class OnlineShoppingContextModelSnapshot : ModelSnapshot
+    [Migration("20220728065532_AddedMinOrderAndMaxOrderInProduct")]
+    partial class AddedMinOrderAndMaxOrderInProduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
