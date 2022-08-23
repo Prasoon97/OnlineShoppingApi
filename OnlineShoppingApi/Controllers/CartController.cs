@@ -51,7 +51,7 @@ namespace OnlineShoppingApi.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, result.Item2);
             }
             _logger.LogInformation("Product added to cart Successfully!");
-            return CreatedAtAction(nameof(Cart), "Product added to cart sucessfully!!");
+            return Ok("Product added to cart sucessfully!!");
         }
 
         [HttpDelete]
@@ -67,7 +67,7 @@ namespace OnlineShoppingApi.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Failed:Product not found in the cart");
             }
             _logger.LogInformation("Product removed from cart Successfully!");
-            return CreatedAtAction(nameof(Cart), "Product removed from cart sucessfully!!");
+            return Ok("Product removed from cart sucessfully!!");
         }
 
     }
