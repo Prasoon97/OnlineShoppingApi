@@ -54,7 +54,7 @@ namespace OnlineShoppingApi.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Can't Place order, Your cart is empty. Please add items to cart first then Place your order.");
             }
             _logger.LogInformation("Order placed sucessfully!");
-            return CreatedAtAction(nameof(MyOrders), "Order Placed succesfully!!");
+            return Ok("Order Placed succesfully!!");
 
         }
 
