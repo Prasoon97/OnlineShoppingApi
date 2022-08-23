@@ -95,11 +95,11 @@ namespace OnlineShoppingApi.Test
 
             //Act
             var actionResult = _controller.PlaceOrder(order);
-            var result = actionResult as CreatedAtActionResult;
+            var result = actionResult as OkObjectResult;
 
             //Assert
-            Assert.IsType<CreatedAtActionResult>(result);
-            Assert.Equal(StatusCodes.Status201Created, result.StatusCode);
+            Assert.IsType<OkObjectResult>(result);
+            Assert.Equal(StatusCodes.Status200OK, result.StatusCode);
         }
 
         [Fact]

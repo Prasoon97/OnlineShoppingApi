@@ -63,7 +63,7 @@ namespace OnlineShoppingApi.Test
         }
 
         [Fact]
-        public void AddToCart_IfProductAddedToCart_Returns201Created()
+        public void AddToCart_IfProductAddedToCart_ReturnsOk()
         {
             //Arrange
             Cart cartDetailToBeAdded = new Cart
@@ -78,11 +78,11 @@ namespace OnlineShoppingApi.Test
 
             //Act
             var actionResult = _controller.AddToCart(cartDetailToBeAdded);
-            var result = actionResult as CreatedAtActionResult;
+            var result = actionResult as OkObjectResult;
 
             //Assert
-            Assert.IsType<CreatedAtActionResult>(result);
-            Assert.Equal(StatusCodes.Status201Created, result.StatusCode);
+            Assert.IsType<OkObjectResult>(result);
+            Assert.Equal(StatusCodes.Status200OK, result.StatusCode);
         }
 
         [Fact]

@@ -22,6 +22,18 @@ namespace OnlineShoppingApi.Service
             var orderTotal = productsInCart.Sum(x => x.ProductDetail.Price * x.Quantity);
             orderDetails.PaymentInfo.TotalAmount = orderTotal;
             orderDetails.OrderStatus = OrderStatus.Success;
+            if (orderDetails.Addresses.Count == 1)
+            {
+                orderDetails.Addresses.Add(new Address()
+                {
+                    AddressLine1 = orderDetails.Addresses.First().AddressLine1,
+                    AddressLine2 = orderDetails.Addresses.First().AddressLine2,
+                    City = orderDetails.Addresses.First().City,
+                    State = orderDetails.Addresses.First().State,
+                    ZipCode = orderDetails.Addresses.First().ZipCode
+                });
+            }
+
             orderDetails.Addresses.First().AddressType = AddressType.ShippingAddress;
             orderDetails.Addresses.Last().AddressType = AddressType.BillingAddress;
 
