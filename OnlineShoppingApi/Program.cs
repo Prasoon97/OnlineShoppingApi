@@ -16,7 +16,7 @@ var loggerConfiguration = new LoggerConfiguration().WriteTo.File(builder.Configu
 ReadFrom.Configuration(builder.Configuration)
 .Enrich.FromLogContext().CreateLogger();
 
-builder.Logging.ClearProviders();
+//builder.Logging.ClearProviders();
 builder.Logging.AddSerilog(loggerConfiguration);
 
 
